@@ -27,12 +27,13 @@ const SIZES = {
 const ProgressBar = ({ value, size }) => {
   const styles = SIZES[size];
 
-  return (<>
-    <VisuallyHidden>Progress Bar</VisuallyHidden>
+  return (
     <ProgressBarContainer role='progressbar' aria-valuenow={`${value}`} style={styles}>
-      <ProgressBarValue value={value}/>
-    </ProgressBarContainer>
-  </>);
+      <VisuallyHidden>{`${value}%`}</VisuallyHidden>
+      <Trimmer>
+        <ProgressBarValue value={value}/>
+      </Trimmer>
+    </ProgressBarContainer>);
 };
 
 
@@ -41,6 +42,13 @@ const ProgressBarContainer = styled.div`
   border-radius: var(--radius);
   padding: var(--padding);
   box-shadow: inset 0px 2px 4px ${COLORS.transparentGray35};
+  overflow: hidden;
+`;
+
+/* Wraps around the progress bar value to trim its ends. */
+const Trimmer = styled.div`
+  overflow: hidden;
+  border-radius: 4px;
 `;
 
 const ProgressBarValue = styled.div`
@@ -49,8 +57,6 @@ const ProgressBarValue = styled.div`
   width: ${props => props.value}%;
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
-  border-top-right-radius: ${props => (props.value / 100) * 4}px;
-  border-bottom-right-radius: ${props => (props.value / 100) * 4}px;
 `;
 
 export default ProgressBar;
