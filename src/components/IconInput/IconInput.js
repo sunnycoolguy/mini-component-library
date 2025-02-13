@@ -12,7 +12,8 @@ const SIZES = {
     '--borderBottomThickness' : '1px',
     '--paddingBlock' : '4px',
     '--paddingLeft': '24px',
-    '--iconSize' : '16px'
+    '--iconSize' : '16px',
+    '--height' : '24px',
   },
   'large' : {
     '--fontSize' : '18px',
@@ -20,6 +21,7 @@ const SIZES = {
     '--paddingBlock' : '8px',
     '--paddingLeft': '36px',
     '--iconSize' : '24px',
+    '--height' : '36px',
   }
 }
 
@@ -47,6 +49,7 @@ const IconInput = ({
 
 const Input = styled.input`
   width: ${props => props.width}px;
+  height: var(--height);
   border: none;
   font-size: var(--fontSize);
   border-bottom: var(--borderBottomThickness) solid ${COLORS.black};
